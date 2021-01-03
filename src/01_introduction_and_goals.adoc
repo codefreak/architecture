@@ -1,75 +1,36 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
 
-[role="arc42help"]
-****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
-
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
-****
+Code FREAK is an Online Programming Environment and automatic Evaluation and Feedback System made for universities and higher education.
 
 === Requirements Overview
 
-[role="arc42help"]
-****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
+These are the main features / functional requirements:
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
-
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
-
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
-****
+* Teachers can create programming excercises (tasks) for studens.
+* Students can work on tasks insinde the browser and submit a solution.
+* Teachers can configure automatic evaluation for a task. It gives feedback about the submitted solutions to the teacher and the student.
+* The evaluation is technology-agnostic.
+* Code FREAK integrates with Learning Management Systems (LMS).
 
 === Quality Goals
 
-[role="arc42help"]
-****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
-
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
-
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
-****
+[options="header",cols="1,2"]
+|===
+| Quality Goal | Explanation & Motivation
+| Usability | The main goal of this project is to be convenient for teachers and students alike. This is key for acquiring users in the early phase.
+| Reliability | We manage data that is potentially used to grade students. It is important that data never gets lost. Unintended downtimes are also not acceptable.
+| Security | We manage personal data of students and provide a basis for grading. It is thus important that certain data can not be read or manipulated without proper permission.
+| Maintainability | The project is intended to be maintained by the community. It must be accessible to as many developers as possible. This has an impact on the architecture, e.g. when chosing technologies.
+|===
 
 === Stakeholders
 
-[role="arc42help"]
-****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
-
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
-
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
-
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
-****
-
-[options="header",cols="1,2,2"]
+[options="header",cols="1,2"]
 |===
-|Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| Role | Expectations
+| Teacher |  It is easy to create, manage and evaluate tasks. The system is reliable. The system integrates with the existing LMS.
+| Student |  It is convenient to work on tasks. The system is reliable. The evaluation gives useful feedback.
+| Developer |  The code is maintainable. The code and architecture are well-documented. The community and collaboration process make it easy to contribute.
+| Educational Institution | The system can be operated easily. The system is compliant with legal regulations.
 |===
