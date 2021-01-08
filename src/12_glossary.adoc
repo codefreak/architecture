@@ -23,9 +23,11 @@ Potentially more columns in case you need translations.
 
 ****
 
-[options="header"]
+.Glossary
+[options="header", cols="1,2"]
 |===
-| Term         | Definition
-| <Term-1>     | <definition-1>
-| <Term-2>     | <definition-2>
+| Term | Definition
+| Assignment | Equivalent of an excercise sheet. Contains one or multiple _tasks_. Has a lifecycle that determines when students can see and work on it.
+| Learning management system (LMS) | "A learning management system (LMS) is a software application for the administration, documentation, tracking, reporting, automation and delivery of educational courses, training programs, or learning and development programs." Source: https://en.wikipedia.org/wiki/Learning_management_system[Wikipedia]
+| Task | A single excercise for students. Usually contains instructions, scaffolding files and a configuration for automatic evaluation.
 |===

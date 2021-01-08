@@ -1,66 +1,68 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
 
-
-[role="arc42help"]
-****
-.Contents
-System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
-(neighboring systems and users, i.e. the context of your system). It thereby specifies the external interfaces.
-
-If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
-
-.Motivation
-The domain interfaces and technical interfaces to communication partners are among your system's most critical aspects. Make sure that you completely understand them.
-
-.Form
-Various options:
-
-* Context diagrams
-* Lists of communication partners and their interfaces.
-****
-
-
 === Business Context
 
-[role="arc42help"]
-****
-.Contents
-Specification of *all* communication partners (users, IT-systems, ...) with explanations of domain specific inputs and outputs or interfaces.
-Optionally you can add domain specific formats or communication protocols.
+[plantuml, "{plantUMLDir}businessContext", png, align="center"]     
+....
+!pragma graphviz_dot jdot
+skinparam componentStyle uml2
+[Code FREAK] <<system>> as cf
 
-.Motivation
-All stakeholders should understand which data are exchanged with the environment of the system.
+:Student: -- cf
+:Teacher: -- cf
 
-.Form
-All kinds of diagrams that show the system as a black box and specify the domain interfaces to communication partners.
+'Student --[hidden]> Teacher
 
-Alternatively (or additionally) you can use a table.
-The title of the table is the name of your system, the three columns contain the name of the communication partner, the inputs, and the outputs.
-****
+node "Learning Management System" as LMS
 
-**<Diagram or Table>**
+cf - LMS
+....
 
-**<optionally: Explanation of external domain interfaces>**
+==== Teacher (User Role)
+Creates and manages tasks/assignments. Reviews student submissions.
+
+==== Student (User Role)
+Works on assignments and submits task solutions. Receives feedback.
+
+==== Learning Management System (External System)
+A learning management system (LMS) is usually the core software system of an educational institution (See <<section-glossary,Glossary>> for more information). It for example models classes and assigments. Code FREAK needs to integrate with such systems to be conveniently usable by teachers and students. Currently supported systems:
+
+* https://moodle.org/[Moodle]
 
 === Technical Context
 
-[role="arc42help"]
-****
-.Contents
-Technical interfaces (channels and transmission media) linking your system to its environment. In addition a mapping of domain specific input/output to the channels, i.e. an explanation with I/O uses which channel.
+[plantuml, "{plantUMLDir}technicalContext", png, align="center"]     
+....
+!pragma graphviz_dot jdot
+skinparam componentStyle uml2
+[Code FREAK] <<system>> as cf
+node Browser
+Browser - cf : HTTP, WebSocket
+node "Learning Management System" as LMS
+node "Container Engine" as CE
+Browser - CE : HTTP
+cf -- CE
+cf - LMS : LTI
+....
 
-.Motivation
-Many stakeholders make architectural decision based on the technical interfaces between the system and its context. Especially infrastructure or hardware designers decide these technical interfaces.
+==== Browser (External System)
+Users access Code FREAK with a browser. A web frontend is delivered over HTTP. WebSocket is used for pushing certain events from the server to the client.
 
-.Form
-E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels and input/output.
+==== Learning Management System (External System)
+For explanation see above. Integrated with the LTI (https://en.wikipedia.org/wiki/Learning_Tools_Interoperability[Learning Tools Interoperability]) protocol.
 
-****
+==== Container Engine
+The container engine is used by Code FREAK to run Docker containers. There are the following use cases:
 
-**<Diagram or Table>**
+* Containers for automatic evaluation. They get the answer files of a student, execute some analysis and pipe the results back to Code FREAK.
+* Each instance of the online IDE is a container. It is managed by Code FREAK and can be accessed by the user over HTTP. This usually involves a https://en.wikipedia.org/wiki/Reverse_proxy[reverse proxy]. Code FREAK does need an implementation for configuring each supported reverse proxy.
 
-**<optionally: Explanation of technical interfaces>**
+.Supported Container Engines
+[options="header",cols="1,1,1"]
+|===
+| Container Engine | Connection Protocol | Supported Reverse Proxies
+| Docker | HTTP / Unix Socket | Without (expose ports), https://traefik.io/traefik/[traefik]
+|===
 
-**<Mapping Input/Output to Channels>**
+Planned: Kubernetes
