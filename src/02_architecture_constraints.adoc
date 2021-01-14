@@ -1,19 +1,32 @@
 [[section-architecture-constraints]]
 == Architecture Constraints
 
+.Technical Constraints
+[options="header",cols="1,2"]
+|===
+| Constraint | Explanation
+| Client | Code FREAK should be accessible on all kinds of systems. It is thus a web application that supports all modern browsers.
+| Execution environment | Deployment is possible via Docker. The application should also be runnable without Docker for development.
+| Third-party libraries |  All third party software that is used must be https://itsfoss.com/what-is-foss/[FOSS] and compatible with AGPL-3.0.
+|===
 
-[role="arc42help"]
-****
-.Contents
-Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
+.Organizational Constraints
+[options="header",cols="1,2"]
+|===
+| Constraint | Explanation
+| Organizational framework | Rudementary version of Scrum. Sprints are usually 2 weeks.
+| Changing team members | The core team consists of university students. The usually only stay for months or few years.
+| Code repository | The code is hosted on GitHub: https://github.com/codefreak/codefreak
+| Distribution | Code FREAK is https://itsfoss.com/what-is-foss/[FOSS], licensed under AGPL-3.0.
+| Release schedule | Releases are currently made on demand. There is no strict release cycle.
+|===
 
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
-
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
-****
+.Conventions
+[options="header",cols="1,2"]
+|===
+| Constraint | Explanation
+| Architecture documentation | Terminology and structure based on arc42.
+| Code style | Rules are included in the repository and automatically enforced.
+| Semantic versioning | The main project and secondary repositories use https://semver.org/[semantic versioning].
+| Language | All code and documentation is written in English.
+|===
